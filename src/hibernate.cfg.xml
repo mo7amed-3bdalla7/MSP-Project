@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/msp</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+
+
+        <mapping class="com.m7md.models.DepartmentEntity"/>
+        <mapping class="com.m7md.models.DepartmentSubjectEntity"/>
+        <mapping class="com.m7md.models.DoctorEntity"/>
+        <mapping class="com.m7md.models.MaterialEntity"/>
+        <mapping class="com.m7md.models.StudentEntity"/>
+        <mapping class="com.m7md.models.SubjectEntity"/>
+        <mapping class="com.m7md.models.UserEntity"/>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
