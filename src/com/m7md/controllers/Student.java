@@ -15,7 +15,7 @@ public class Student implements Serializable {
     private String name;
 
 
-    @Size(min = 2, max = 3)
+    @Size(min = 2, max = 4)
     private String age;
 
     public String getName() {
