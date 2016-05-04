@@ -13,6 +13,8 @@ public class StudentEntity {
     private int year;
     private String uid;
 
+    private UserEntity user;
+
     @Id
     @Column(name = "id")
     public int getId() {

@@ -40,6 +40,7 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="assets/css/css-rtl/style-rtl.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-rtl.css">
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/css-rtl/headers/header-default-rtl.css">
@@ -175,7 +176,7 @@
                                         <li class="topbar-devider"></li>
                     -->
                     <!--<li><a href="page_login.html">Login</a></li>-->
-                    <li><a href="RTL/page_login.html">ﺗﺴﺠﻴﻞ اﻟﺪﺧﻮﻝ</a></li>
+                    <li><a href="login">ﺗﺴﺠﻴﻞ اﻟﺪﺧﻮﻝ</a></li>
                 </ul>
             </div>
             <!-- End Topbar -->

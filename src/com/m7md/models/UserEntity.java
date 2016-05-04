@@ -8,6 +8,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user", schema = "msp")
 public class UserEntity {
+    final static String ADMIN = "admin";
+    final static String DOCTOR = "doctor";
+    final static String STUDENT = "student";
+
     private int id;
     private String name;
     private String email;

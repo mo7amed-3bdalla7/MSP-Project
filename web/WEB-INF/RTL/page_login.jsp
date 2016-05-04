@@ -1,10 +1,11 @@
-
-    <!--=== Breadcrumbs ===-->
+<%@include file="header.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!--=== Breadcrumbs ===-->
     <div class="breadcrumbs">
         <div class="container">
             <h1 class="pull-left">  تسجيل الدخول بحسابك  </h1>
-            
-             <h1 class="pull_left"> أو إضغط <a href="page_signup.html"> هنا </a> ﻹنشاء حساب جديد</h1> 
+
+             <h1 class="pull_left"> أو إضغط <a href="signup"> هنا </a> ﻹنشاء حساب جديد</h1>
             <ul class="pull-right breadcrumb">
                 <li><a href="index.html">الرئيسيه </a></li>
                 <li><a href="#">الصفحات </a></li>
@@ -16,29 +17,29 @@
     																
 
     <!--=== Content Part ===-->
-    <div class="container content">		
+    <div class="container content">
     	<div class="row">
             <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                <form class="reg-page">
-                    <div class="reg-header">            
-                        <h2>الدخول الى حسابك </h2>
+                <form class="reg-page" method="post">
+                    <div class="reg-header">
+                        <h2>الدخول الى حسابك ${userInfo}</h2>
                     </div>
 
                     <div class="input-group margin-bottom-20">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" placeholder="ادخل حسابك " class="form-control">
-                    </div>                    
+                        <input type="email" placeholder="ادخل حسابك " name="email" class="form-control">
+                    </div>
                     <div class="input-group margin-bottom-20">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" placeholder="كلمة المرور " class="form-control">
-                    </div>                    
+                        <input type="password" name="password" placeholder="كلمة المرور " class="form-control">
+                    </div>
 
                     <div class="row">
                         <div class="col-md-6 checkbox">
-                            <label><input type="checkbox"> تذكرنى  </label>                        
+                            <label><input type="checkbox"> تذكرنى  </label>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn-u pull-right" type="submit">تسجيل الدخول </button>                        
+                            <button class="btn-u pull-right" type="submit">تسجيل الدخول </button>
                         </div>
                     </div>
 
@@ -46,10 +47,10 @@
 
                     <h4>هل نسيت كلمة المرور؟</h4>
                     <p>لا تقلق , <a class="color-green" href="#">اضغط هنا </a> لتغيير كلمة المرور </p>
-                </form>            
+                </form>
             </div>
         </div><!--/row-->
-    </div><!--/container-->		
+    </div><!--/container-->
     <!--=== End Content Part ===-->
 
 
@@ -117,3 +118,4 @@
                 </div>
             </div>
         </div>
+        <%@include file="footer.jsp"%>

@@ -242,4 +242,7 @@
       </key>
     </database-model>
   </data-source>
+  <data-source name="hibernate.cfg.xml/Hibernate" uuid="d419ac05-7316-460e-afea-f0d464d37b40">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>
