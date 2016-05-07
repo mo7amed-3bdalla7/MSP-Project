@@ -1,6 +1,10 @@
 package com.m7md.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Created by m7md on 4/26/16.
@@ -8,17 +12,25 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user", schema = "msp")
 public class UserEntity {
-    final static String ADMIN = "admin";
-    final static String DOCTOR = "doctor";
-    final static String STUDENT = "student";
+    public final static Short ADMIN = 1;
+    public final static Short DOCTOR = 2;
+    public final static Short STUDENT = 3;
 
     private int id;
+    @Pattern(regexp = "\\w+[a-z0-9]",message = "اسم المستخدم يجب ان يبدأ بحرف ع الاقل وهو مكون من احرف وارقام فقط")
+    @Size(min = 6,message = "اسم المستخدم يجب ان يحتوى ع الاقل على 6 احرف")
     private String name;
+    @Pattern(regexp ="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}" ,message = "من فضلك ادخل بريد الكترونى صحيح")
     private String email;
+    @Pattern(regexp = "\\d{4,10}",message = "الرقم السرى لا يحتوى الا ع ارقام ولا يزيد عن 10 ارقام")
+    @Size(min = 4,message = "ارقم السرى يجب ان يحتوى ع الاقل على 4 احرف")
     private String password;
+    @Pattern(regexp = "01\\d{9}",message = "من فضلك ادخل رقم هاتف صحيح")
     private String phone;
     private byte active;
-    private String type;
+    @Min(value = 1,message = "ان لم تحدد نوع المستخدم لم يتم تسجيلك ")
+    @Max(value = 3,message = "ان لم تحدد نوع المستخدم لم يتم تسجيلك ")
+    private Short type;
 
     @Id
     @Column(name = "id")
@@ -82,11 +94,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "type")
-    public String getType() {
+    public Short getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Short type) {
         this.type = type;
     }
 
@@ -103,20 +115,9 @@ public class UserEntity {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-
+        if (type != that.type) return false;
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (int) active;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        return result;
-    }
+
 }

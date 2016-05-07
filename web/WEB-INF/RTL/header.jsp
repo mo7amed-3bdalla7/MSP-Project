@@ -7,10 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html dir="rtl" lang="en"> <!--<![endif]-->
+<!--[if !IE]><!-->
+<html dir="rtl" lang="en"> <!--<![endif]-->
 
 <!-- Cloned by RabinsXP.com-->
 <head>
@@ -40,7 +43,7 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="assets/css/css-rtl/style-rtl.css">
-    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-rtl.css">
+
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/css-rtl/headers/header-default-rtl.css">
@@ -52,6 +55,8 @@
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/plugins/parallax-slider/css/parallax-slider-rtl.css">
     <link rel="stylesheet" href="assets/plugins/owl-carousel2/assets/owl.carousel.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-rtl.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms-rtl.css">
 
     <!-- Style Switcher -->
     <link rel="stylesheet" href="assets/css/plugins/style-switcher.css">
@@ -75,7 +80,7 @@
 
     <script type="text/javascript">
         // makes sure the whole site is loaded
-        jQuery(window).load(function() {
+        jQuery(window).load(function () {
             // will first fade out the loading animation
             jQuery("#status").delay(1000).fadeOut();
             // will fade out the whole DIV that covers the website.
@@ -84,8 +89,27 @@
     </script>
     <style type="text/css">
 
-        #preloader{position:fixed;top:0; left:0;right:0;bottom:0;background:#ECF0F1;z-index:9999;height:100%;width:100%;}
-        #status{width:920px;height:532px;position:absolute;left:50%;top:50%;margin:-266px 0 0 -460px;background:url(assets/carregar.gif) center no-repeat;}
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ECF0F1;
+            z-index: 9999;
+            height: 100%;
+            width: 100%;
+        }
+
+        #status {
+            width: 920px;
+            height: 532px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -266px 0 0 -460px;
+            background: url(assets/carregar.gif) center no-repeat;
+        }
 
     </style>
 
@@ -122,7 +146,9 @@
         <div class="style-switcher-heading">Theme Skins</div>
         <div class="row no-col-space margin-bottom-20 skins-section">
             <div class="col-xs-6">
-                <button data-skins="default" class="btn-u btn-u-xs btn-u-dark btn-block active-switcher-btn handle-skins-btn">Light</button>
+                <button data-skins="default"
+                        class="btn-u btn-u-xs btn-u-dark btn-block active-switcher-btn handle-skins-btn">Light
+                </button>
             </div>
             <div class="col-xs-6">
                 <button data-skins="dark" class="btn-u btn-u-xs btn-u-dark btn-block skins-btn">Dark</button>
@@ -135,7 +161,8 @@
         <div class="style-switcher-heading">Layout Styles</div>
         <div class="row no-col-space margin-bottom-20">
             <div class="col-xs-6">
-                <a href="javascript:void(0);" class="btn-u btn-u-xs btn-u-dark btn-block active-switcher-btn wide-layout-btn">Wide</a>
+                <a href="javascript:void(0);"
+                   class="btn-u btn-u-xs btn-u-dark btn-block active-switcher-btn wide-layout-btn">Wide</a>
             </div>
             <div class="col-xs-6">
                 <a href="javascript:void(0);" class="btn-u btn-u-xs btn-u-dark btn-block boxed-layout-btn">Boxed</a>
@@ -176,13 +203,26 @@
                                         <li class="topbar-devider"></li>
                     -->
                     <!--<li><a href="page_login.html">Login</a></li>-->
-                    <li><a href="login">ﺗﺴﺠﻴﻞ اﻟﺪﺧﻮﻝ</a></li>
+
+
+                    <c:choose>
+                        <c:when test="${ user==null ||user.id==-1}">
+                            <li><a href="login">ﺗﺴﺠﻴﻞ اﻟﺪﺧﻮﻝ</a></li>
+                        </c:when>
+                        <c:otherwise>
+
+                            <li><a href="logout">ﺗﺴﺠﻴﻞ اﻟخروج</a></li>
+                        </c:otherwise>
+                    </c:choose>
+
+
                 </ul>
             </div>
             <!-- End Topbar -->
 
             <!-- Toggle get grouped for better mobile display -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="fa fa-bars"></span>
             </button>
@@ -192,17 +232,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
             <div class="container">
-                <ul  class="nav navbar-nav" >
+                <ul class="nav navbar-nav">
                     <!-- Home -->
                     <li>
-                        <a  class="navItem" href="index.html" style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                        <a class="navItem" href="index.html" style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻟﺮﺋﻴﺴﻴﺔ
                         </a>
                     </li>
                     <!-- End Home -->
                     <!-- Pages -->
                     <li>
-                        <a class="navItem" href="RTL/page_about1.html" style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                        <a class="navItem" href="RTL/page_about1.html"
+                           style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             ﻋﻦ اﻟﻜﻠﻴﺔ
                         </a>
                         <!--                                <a href="page_about1.html" style=" font-family:PF DIN Text Arabic;
@@ -219,7 +260,7 @@
                            style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻟﺒﺮاﻣﺞ اﻻﻛﺎﺩﻳﻤﻴﺔ
                         </a>
-                        <ul class="dropdown-menu" >
+                        <ul class="dropdown-menu">
 
                             <li><a href="RTL/table.html"><strong>ﻣﺮﺣﻠﺔ اﻟﺒﻜﺎﻟﺮﻳﻮﺱ</strong></a></li>
                             <li><a href="#"><strong>ﻣﺮﺣﻠﺔ اﻟﺪﺭاﺳﺎﺕ اﻟﻌﻠﻴﺎ</strong></a></li>
@@ -230,8 +271,9 @@
                     <!-- End Blog -->
 
                     <!-- Portfolio -->
-                    <li >
-                        <a class="navItem" href="RTL/news.html" style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                    <li>
+                        <a class="navItem" href="RTL/news.html"
+                           style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻷﺧﺒﺎﺭ
                         </a>
                     </li>
@@ -239,33 +281,33 @@
 
                     <!-- Features -->
                     <li class="dropdown">
-                        <a  class="navItem2" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                            style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                        <a class="navItem2" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                           style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻟﺘﺨﺼﺼﺎﺕ
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="RTL/cs.html"><strong>ﻋﻠﻮﻡ اﻟﺤﺎﺳﺐ </strong></a></li>
-                            <li> <a href="RTL/it.html"><strong>ﺗﻜﻨﻮﻟﻮﺟﻴﺎ اﻟﻤﻌﻠﻮﻣﺎﺕ</strong></a></li>
-                            <li> <a href="RTL/is.html"><strong>ﻧﻈﻢ اﻟﻤﻌﻠﻮﻣﺎﺕ</strong></a></li>
-                            <li> <a href="RTL/or.html"><strong>ﺑﺤﻮﺙ اﻟﻌﻤﻠﻴﺎﺕ </strong></a></li>
+                            <li><a href="RTL/it.html"><strong>ﺗﻜﻨﻮﻟﻮﺟﻴﺎ اﻟﻤﻌﻠﻮﻣﺎﺕ</strong></a></li>
+                            <li><a href="RTL/is.html"><strong>ﻧﻈﻢ اﻟﻤﻌﻠﻮﻣﺎﺕ</strong></a></li>
+                            <li><a href="RTL/or.html"><strong>ﺑﺤﻮﺙ اﻟﻌﻤﻠﻴﺎﺕ </strong></a></li>
                         </ul>
                     </li>
                     <!-- End Features -->
 
                     <!-- Shortcodes -->
-                    <li   class="dropdown">
+                    <li class="dropdown">
                         <a id="navItem3" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                           style="font-family: PF DIN Text Arabic; font-size: 23px;" >
+                           style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻷﻧﺸﻄﺔ
                         </a>
                         <ul class="dropdown-menu">
-                            <li> <a href="RTL/sport.html"><strong>اﻟﻨﺸﺎﻁ اﻟﺮﻳﺎﺿﻰ </strong></a></li>
-                            <li> <a href="RTL/art.html"><strong>اﻟﻨﺸﺎﻁ اﻟﻔﻨﻰ</strong></a></li>
-                            <li> <a href="RTL/cultural.html"><strong>اﻟﻨﺸﺎﻁ اﻟﺜﻘﺎﻓﻰ</strong></a></li>
-                            <li> <a href="RTL/science.html"><strong>اﻟﺸﺎﻁ اﻟﻌﻠﻤﻰ ﻭ اﻟﺘﻜﻨﻮﻟﻮﺟﻰ </strong></a></li>
-                            <li> <a href="RTL/social.html"><strong>اﻟﻨﺸﺎﻁ اﻹﺟﺘﻤﺎﻋﻰ</strong></a></li>
-                            <li> <a href="RTL/gwala.html"><strong>اﻟﺠﻮاﻟﺔ ﻭ اﻟﺨﺪﻣﺔ اﻟﻌﺎﻣﺔ</strong></a></li>
-                            <li> <a href="RTL/jurney.html"><strong>اﻷﺳﺮ ﻭ اﻟﺮﺣﻼﺕ</strong></a></li>
+                            <li><a href="RTL/sport.html"><strong>اﻟﻨﺸﺎﻁ اﻟﺮﻳﺎﺿﻰ </strong></a></li>
+                            <li><a href="RTL/art.html"><strong>اﻟﻨﺸﺎﻁ اﻟﻔﻨﻰ</strong></a></li>
+                            <li><a href="RTL/cultural.html"><strong>اﻟﻨﺸﺎﻁ اﻟﺜﻘﺎﻓﻰ</strong></a></li>
+                            <li><a href="RTL/science.html"><strong>اﻟﺸﺎﻁ اﻟﻌﻠﻤﻰ ﻭ اﻟﺘﻜﻨﻮﻟﻮﺟﻰ </strong></a></li>
+                            <li><a href="RTL/social.html"><strong>اﻟﻨﺸﺎﻁ اﻹﺟﺘﻤﺎﻋﻰ</strong></a></li>
+                            <li><a href="RTL/gwala.html"><strong>اﻟﺠﻮاﻟﺔ ﻭ اﻟﺨﺪﻣﺔ اﻟﻌﺎﻣﺔ</strong></a></li>
+                            <li><a href="RTL/jurney.html"><strong>اﻷﺳﺮ ﻭ اﻟﺮﺣﻼﺕ</strong></a></li>
                         </ul>
                     </li>
 

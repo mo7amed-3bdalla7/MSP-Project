@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - msp@localhost" uuid="c7663ad2-faef-44d1-8feb-8de18e9065de">
+  <data-source name="hibernate.cfg.xml/Hibernate" uuid="d419ac05-7316-460e-afea-f0d464d37b40">
     <database-info product="MySQL" version="5.7.12-0ubuntu1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
@@ -234,15 +234,30 @@
       </column>
       <column id="58" parent="8" name="type">
         <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
+        <data-type>tinyint(2)</data-type>
       </column>
-      <key id="59" parent="8" name="PRIMARY">
+      <index id="59" parent="8" name="user_email_uindex">
+        <columns>email</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="60" parent="8" name="user_phone_uindex">
+        <columns>phone</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="61" parent="8" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
+      <key id="62" parent="8" name="user_email_uindex">
+        <columns>email</columns>
+        <underlying-index>user_email_uindex</underlying-index>
+      </key>
+      <key id="63" parent="8" name="user_phone_uindex">
+        <columns>phone</columns>
+        <underlying-index>user_phone_uindex</underlying-index>
+      </key>
     </database-model>
-  </data-source>
-  <data-source name="hibernate.cfg.xml/Hibernate" uuid="d419ac05-7316-460e-afea-f0d464d37b40">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

@@ -13,6 +13,8 @@
 </head>
 <body>
 <form:errors path="ma.*"/>
+
+
 <form action="/welcome" method="post">
 
     <input type="text" name="name">

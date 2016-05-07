@@ -1,5 +1,16 @@
-<%@include file="header.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@include file="header.jsp" %>
+<c:if test="${user.type!=1}">
+    <c:redirect url="/"/>
+</c:if>
+<style>
+    .red {
+        color: #ff3357;
+    }
+</style>
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs">
     <div class="container">
@@ -17,113 +28,163 @@
 <!--=== Content Part ===-->
 <div class="container content">
     <div class="row">
+
+
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-            <form class="" method="post">
-                <div class="reg-header">
-                    <h2>التسجيل باستخدام حساب جديد </h2>
-                </div>
+            <%--<form class="sky-form" method="post" style="font-family: 'Droid Arabic Kufi',serf !important;">--%>
+            <form:form method="post" cssStyle="font-family: 'Droid Arabic Kufi',serf !important;" cssClass="sky-form"
+                       commandName="${error}">
 
-                <%--<section>
+
+                <header>
+                    التسجيل باستخدام حساب جديد
+                </header>
+
+
+                <fieldset>
+                        <%--<form:errors path="student.*" cssClass=""/>--%>
+
+
                     <label class="input">
-                        <i class="icon-append fa fa-lock "></i>
-                        <input type="password" name="passwordConfirm" placeholder="Confirm password">
-                        <b class="tooltip tooltip-bottom-left">Don't forget your password</b>
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="text" name="name" placeholder="إسم المستخدم" class="form-control">
+                        <form:errors path="*" cssClass="red"/>
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
                     </label>
-                </section>--%>
-
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" name="name" placeholder="إسم المستخدم" class="form-control">
-                </div>
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input type="text" name="email" placeholder="اﻹيميل" class="form-control">
-                </div>
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    <input type="text" name="password" placeholder="كلمة المرور" class="form-control">
-                </div>
-
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="password" name="password2" placeholder="تأكيد كلمة المرور" class="form-control">
-                </div>
-
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="phone" name="phone" placeholder="رقم الهاتف" class="form-control">
-                </div>
 
 
-                <section>
-                    <label class="select">
-                        <select name="department">
-                            <option value="0">اختر القسم</option>
-                            <option value="1">cs</option>
-                            <option value="2">is</option>
+                    <label class="input">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="text" name="email" placeholder="اﻹيميل" class="form-control">
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                    </label>
+                    <label class="input">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="password" name="password" placeholder="كلمة المرور" class="form-control">
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                    </label>
+                    <label class="input">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="password" name="password2" placeholder="تأكيد كلمة المرور" class="form-control">
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                    </label>
+
+                    <label class="input">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="phone" name="phone" placeholder="رقم الهاتف" class="form-control">
+                    </label>
+
+
+                    <label class="select ">
+                        <select name="type" style="font-family: inherit;color:#bbb;">
+                            <option value="0" selected>اختر نوع المستخدم</option>
+                            <option value="1">Admin</option>
+                            <option value="2">دكتور</option>
+                            <option value="3">طالب</option>
                         </select>
                         <i></i>
                     </label>
-                </section>
+                    <script>
+                        $("select[name='type']")
+                                .change(function () {
+                                    var str = "";
+                                    $("select[name='type'] option:selected").each(function () {
+                                        str += $(this).text();
+                                    });
+                                    if (str === "دكتور") {
+                                        $(".doctor").css("display", "block");
+                                        $(".student").css("display", "none");
+                                        $(".student_doctor").css("display", "block");
 
-                <section>
-                    <label class="select">
-                        <select name="type">
-                            <option value="0">اختر نوع المستخدم</option>
-                            <option value="1">دكتور</option>
-                            <option value="2">طالب</option>
+
+                                    } else if (str === "طالب") {
+                                        $(".student").css("display", "block");
+                                        $(".doctor").css("display", "none");
+                                        $(".student_doctor").css("display", "block");
+
+                                    } else {
+                                        $(".student").css("display", "none");
+                                        $(".doctor").css("display", "none");
+                                        $(".student_doctor").css("display", "none");
+
+                                    }
+                                });
+
+                    </script>
+
+
+                    <label class="select student_doctor" style="display: none">
+                        <select name="departmentId" style="font-family: inherit; color:#bbb;">
+
+
+                            <option value="0" selected>اختر القسم</option>
+
+                            <c:forEach items="${departments}" var="department">
+
+                                <option value="${department.id}">${department.name}</option>
+
+                            </c:forEach>
+
                         </select>
                         <i></i>
                     </label>
-                </section>
 
 
+                    <label class="input doctor" style="display: none">
+                        <i class="icon-append fa fa-lock"></i>
+                    <textarea name="details" placeholder="معلومات عن الدكتور"
+                              style="max-width: 298px" class="form-control"></textarea>
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                    </label>
 
 
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <textarea type="phone" name="details" placeholder="معلومات عن الدكتور"
-                              class="form-control"></textarea>
-                </div>
+                    <label class="input student" style="display: none">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="text" name="section" placeholder="رقم السكشن" class="form-control">
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                    </label>
+                    <label class="input student" style="display: none">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="text" name="year" placeholder="السنه الدراسية" class="form-control">
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                    </label>
+
+                    <label class="input student" style="display: none">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="text" name="uid" placeholder="كود الطالب" class="form-control">
+                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                    </label>
 
 
+                    <label class="toggle">
+                        <input type="checkbox" name="active"><i></i>
+
+                        تفعيل الحساب</label>
 
 
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="phone" name="section" placeholder="رقم السكشن" class="form-control">
-                </div>
-
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="phone" name="year" placeholder="السنه الدراسية" class="form-control">
-                </div>
-
-                <div class="input-group margin-bottom-20">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="phone" name="phone" placeholder="كود الطالب" class="form-control">
-                </div>
+                        <%--<div class="row">--%>
+                        <%--<div class="col-md-6">--%>
+                    <label class="checkbox"><input type="checkbox"
+                    ><i></i>تذكرنى</label>
+                        <%--<button class="btn-u pull-right" type="submit">إنشاء حساب جديد</button>--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
 
 
+                    <h4>هل نسيت كلمة المرور؟</h4>
+                    <p>لا تقلق , <a class="color-green" href="#">اضغط هنا </a> لتغيير كلمة المرور </p>
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn-u">إنشاء حساب جديد</button>
+                        <%--<a href="#" class="btn-u btn-u-default">Register</a>--%>
+                </footer>
 
-                <div class="row">
-                    <div class="col-md-6 checkbox">
-                        <label><input type="checkbox"> تذكرنى </label>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="btn-u pull-right" type="submit">إنشاء حساب جديد</button>
-                    </div>
-                </div>
-
-                <hr>
-
-                <h4>هل نسيت كلمة المرور؟</h4>
-                <p>لا تقلق , <a class="color-green" href="#">اضغط هنا </a> لتغيير كلمة المرور </p>
-            </form>
+            </form:form>
+            <%--</form>--%>
         </div>
     </div>
 </div>
-/container
+
 <!--=== End Content Part ===-->
 
 
@@ -194,61 +255,4 @@
         </div>
     </div>
 
-    <!--/footer-->
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        جميع الحقوق محفوظة &copy; 2016
-
-                        <!--<a href="#">جميع الحقوق محفوظة &copy; </a>-->
-                        &nbsp; | <a href="#">&nbsp;سياسات الاستخدام&nbsp;</a> &nbsp;| &nbsp; بواسطة&nbsp;&nbsp; <a
-                            href="about_team.html">فريق العمل</a>
-
-                    </p>
-                </div>
-
-                <!-- Social Links -->
-                <div class="col-md-6">
-                    <ul class="footer-socials list-inline">
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                               data-original-title="Facebook">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                               data-original-title="Google Plus">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                               data-original-title="Linkedin">
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                               data-original-title="Twitter">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                               data-original-title="youtube">
-                                <i class="fa fa-youtube"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- End Social Links -->
-            </div>
-        </div>
-    </div><!--/copyright-->
-</div>
 <%@include file="footer.jsp" %>

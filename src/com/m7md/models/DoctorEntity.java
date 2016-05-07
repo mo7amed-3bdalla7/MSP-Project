@@ -1,6 +1,9 @@
 package com.m7md.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 /**
  * Created by m7md on 4/26/16.
@@ -9,7 +12,15 @@ import javax.persistence.*;
 @Table(name = "doctor", schema = "msp")
 public class DoctorEntity {
     private int id;
+    @Max(value = 4,message = "اختر قسم صحيح ")
+    @Min(value = 1,message = "اختر قسم صحيح")
+    private int departmentId;
+   @Pattern(regexp = "[A-z0-9]",message = "من فضلك حدد معلومات عن الدكتور ")
     private String details;
+
+    @OneToOne
+    private UserEntity user;
+
 
     @Id
     @Column(name = "id")
@@ -44,10 +55,21 @@ public class DoctorEntity {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (details != null ? details.hashCode() : 0);
-        return result;
+    @Basic
+    @Column(name = "department_id")
+    public int getDepartmentId() {
+        return departmentId;
     }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    /*public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }*/
 }
