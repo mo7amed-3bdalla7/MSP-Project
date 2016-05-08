@@ -4,6 +4,8 @@
     <data-source name="hibernate.cfg.xml/Hibernate" uuid="d419ac05-7316-460e-afea-f0d464d37b40">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+      <schema-pattern>msp.*</schema-pattern>
+      <default-schemas>msp.*</default-schemas>
     </data-source>
   </component>
 </project>

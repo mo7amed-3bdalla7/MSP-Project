@@ -6,11 +6,7 @@
 <c:if test="${user.type!=1}">
     <c:redirect url="/"/>
 </c:if>
-<style>
-    .red {
-        color: #ff3357;
-    }
-</style>
+
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs">
     <div class="container">

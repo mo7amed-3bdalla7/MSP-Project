@@ -89,6 +89,11 @@
     </script>
     <style type="text/css">
 
+
+        .red {
+            color: #ff3357;
+        }
+
         #preloader {
             position: fixed;
             top: 0;

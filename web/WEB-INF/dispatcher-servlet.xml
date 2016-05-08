@@ -31,11 +31,14 @@
     <bean id="hibernate" class="com.m7md.models.HibernateImpl">
     </bean>
 
-   <!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="msg"/>
-    </bean>-->
+    <!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+         <property name="basename" value="msg"/>
+     </bean>-->
 
     <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"
+                   cache-period="31556926"/>
+    <context:annotation-config/>
+    <mvc:resources mapping="/subject/assets/**" location="/WEB-INF/assets/"
                    cache-period="31556926"/>
     <context:annotation-config/>
 

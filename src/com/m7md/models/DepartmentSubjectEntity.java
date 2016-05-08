@@ -1,9 +1,6 @@
 package com.m7md.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by m7md on 4/26/16.
@@ -12,6 +9,29 @@ import javax.persistence.Table;
 @Table(name = "department_subject", schema = "msp")
 public class DepartmentSubjectEntity {
     private int id;
+    private int departmentId;
+    @Column(name = "subject_id")
+    @Basic
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
+    }
+    @Column(name = "department_id")
+    @Basic
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    private int subjectId;
+
 
     @Id
     @Column(name = "id")

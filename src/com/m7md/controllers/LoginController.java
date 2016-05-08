@@ -71,4 +71,6 @@ public class LoginController {
         logout.addObject("user", user);
         return logout;
     }
+
+
 }
