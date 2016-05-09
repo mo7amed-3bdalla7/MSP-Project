@@ -3,9 +3,10 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@include file="header.jsp" %>
-<c:if test="${user.id>0}">
+<c:if test="${user.id<0}">
     <c:redirect url="/"/>
 </c:if>
+
 
 <!--=== Header v7 Left ===-->
 <div class="header-v7 header-left-v7">
@@ -44,39 +45,14 @@
 
                     <!-- About Pages -->
                     <li class="dropdown">
-                        <a href="#">
-                            المنهج
+                        <a href="http://localhost:8080/lectures/${subjects.id}
+                        ">
+                            المحاضرات
                         </a>
 
                     </li>
                     <!-- End About Pages -->
 
-                    <!-- Blog -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            مدة الكورس
-                        </a>
-
-                    </li>
-                    <!-- End Blog -->
-
-                    <!-- Contacts -->
-                    <li class="dropdown">
-                        <a href="test2.html">
-                            المحتوى
-                        </a>
-
-                    </li>
-                    <!-- End Contacts -->
-
-                    <!-- Misc Pages -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            تنزيل المحتوى
-                        </a>
-
-                    </li>
-                    <!-- End Misc Pages -->
                 </ul>
 
             </div>

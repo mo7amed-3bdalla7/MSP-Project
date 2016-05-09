@@ -15,7 +15,7 @@ public class DoctorEntity {
     @Max(value = 4,message = "اختر قسم صحيح ")
     @Min(value = 1,message = "اختر قسم صحيح")
     private int departmentId;
-   @Pattern(regexp = "[A-z0-9]",message = "من فضلك حدد معلومات عن الدكتور ")
+   @Pattern(regexp = "\\w+",message = "من فضلك حدد معلومات عن الدكتور ")
     private String details;
 
     @OneToOne

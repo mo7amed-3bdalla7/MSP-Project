@@ -41,6 +41,9 @@
     <mvc:resources mapping="/subject/assets/**" location="/WEB-INF/assets/"
                    cache-period="31556926"/>
     <context:annotation-config/>
+ <mvc:resources mapping="/lectures/assets/**" location="/WEB-INF/assets/"
+                   cache-period="31556926"/>
+    <context:annotation-config/>
 
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

@@ -4,8 +4,10 @@ import com.m7md.models.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpSessionRequiredException;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -13,7 +15,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Controller
-@SessionAttributes("user")
+//@SessionAttributes("user")
 @RequestMapping("signup")
 public class RegisterController {
 
@@ -23,74 +25,73 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView init() {
 
-        List<DepartmentEntity> fetchedRow = HibernateImpl.fetchRows(DepartmentEntity.class.getSimpleName());
 
-        ModelAndView login = new ModelAndView("RTL/page_signup");
-        login.addObject("departments", fetchedRow);
-
-
-        return login;
+        return getDepartments();
     }
 
-    @ModelAttribute("user")
+   /* @ModelAttribute("user")
     public UserEntity createABC() {
         UserEntity user = new UserEntity();
         user.setId(-1);
         return user;
+    }*/
+
+    private ModelAndView getDepartments() {
+        List<DepartmentEntity> fetchedRow = HibernateImpl.fetchRows(DepartmentEntity.class.getSimpleName());
+
+        ModelAndView signup = new ModelAndView("RTL/page_signup");
+        signup.addObject("departments", fetchedRow);
+        return signup;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ExceptionHandler(HttpSessionRequiredException.class)
     public ModelAndView submit(
-            @Valid @ModelAttribute("user") UserEntity user,
+            @Valid @ModelAttribute("userReg") UserEntity userReg,
             BindingResult userResult,
             @Valid @ModelAttribute("doctor") DoctorEntity doctor,
             BindingResult doctorResult,
             @Valid @ModelAttribute("student") StudentEntity student,
-            BindingResult studentResult,
-            SessionStatus status
+            BindingResult studentResult
     ) {
-        ModelAndView login = new ModelAndView("RTL/page_signup");
+
+
+        ModelAndView login = getDepartments();
+
         if (userResult.hasErrors()) {
-            login.addObject("error", "user");
+            login.addObject("error", "userReg");
             return login;
         } else {
-            System.out.println("fffffffffffffffffffffffffff");
 
             BigInteger insert = null;
 
-            if (user.getType() == UserEntity.ADMIN) {
-                insert = HibernateImpl.<UserEntity>insert(user);
-            } else if (user.getType() == UserEntity.DOCTOR) {
+            if (userReg.getType() == UserEntity.ADMIN) {
+                insert = HibernateImpl.<UserEntity>insert(userReg);
+            } else if (userReg.getType() == UserEntity.DOCTOR) {
                 if (doctorResult.hasErrors()) {
                     login.addObject("error", "doctor");
                 } else {
-                    insert = HibernateImpl.<UserEntity>insert(user);
+                    insert = HibernateImpl.<UserEntity>insert(userReg);
                     doctor.setId(insert.intValue());
                     HibernateImpl.insert(doctor);
                 }
-                return login;
 
-            } else if (user.getType() == UserEntity.STUDENT) {
+
+            } else if (userReg.getType() == UserEntity.STUDENT) {
                 if (studentResult.hasErrors()) {
-                    login.addObject("error", "doctor");
+                    login.addObject("error", "student");
                 } else {
-                    insert = HibernateImpl.<UserEntity>insert(user);
+                    insert = HibernateImpl.<UserEntity>insert(userReg);
                     student.setId(insert.intValue());
                     HibernateImpl.insert(student);
                 }
-                return login;
+
             }
 
-            user.setId(insert.intValue());
 
             if (insert != null && insert.intValue() > 0) {
 
                 login = new ModelAndView("redirect:/");
-            } else {
-
-                login = new ModelAndView("redirect:/signup");
-
             }
 
 

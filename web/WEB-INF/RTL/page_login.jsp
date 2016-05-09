@@ -10,8 +10,6 @@
 <div class="breadcrumbs">
     <div class="container">
         <h1 class="pull-left"> تسجيل الدخول بحسابك${user.email} </h1>
-
-        <h1 class="pull_left"> أو إضغط <a href="signup"> هنا </a> ﻹنشاء حساب جديد</h1>
         <ul class="pull-right breadcrumb">
             <li><a href="index.html">الرئيسيه </a></li>
             <li><a href="#">الصفحات </a></li>
@@ -27,19 +25,28 @@
 <div class="container content">
     <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-            <form class="reg-page" method="post">
+
+
+            <form:form method="post" cssClass="reg-page" modelAttribute="usermodel">
                 <div class="reg-header">
                     <h2>الدخول الى حسابك ${userInfo}</h2>
                 </div>
 
+                <c:if test="${login_error!=null}">
+
+                    <span class="red">${login_error}</span>
+
+                </c:if>
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <input type="email" placeholder="ادخل حسابك " name="email" class="form-control">
                 </div>
+
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input type="password" name="password" placeholder="كلمة المرور " class="form-control">
                 </div>
+
 
                 <div class="row">
                     <div class="col-md-6 checkbox">
@@ -54,7 +61,7 @@
 
                 <h4>هل نسيت كلمة المرور؟</h4>
                 <p>لا تقلق , <a class="color-green" href="#">اضغط هنا </a> لتغيير كلمة المرور </p>
-            </form>
+            </form:form>
         </div>
     </div><!--/row-->
 </div>

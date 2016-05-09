@@ -315,6 +315,35 @@
                             <li><a href="RTL/jurney.html"><strong>اﻷﺳﺮ ﻭ اﻟﺮﺣﻼﺕ</strong></a></li>
                         </ul>
                     </li>
+                    <c:if test="${user.type==3}">
+                    <li class="dropdown">
+                        <a id="navItem3" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                           style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                            الطالب
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/terms"><strong>اﻟمواد </strong></a></li>
+
+                        </ul>
+                    </li>
+
+                    </c:if>
+
+
+                    <c:if test="${user.type==2}">
+                        <li class="dropdown">
+                            <a id="navItem3" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                               style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                                الدكتور
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/terms"><strong>اﻟمواد </strong></a></li>
+
+                            </ul>
+                        </li>
+
+                    </c:if>
+
 
                     <!-- Search Block -->
                     <li>

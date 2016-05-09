@@ -3,69 +3,10 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@include file="header.jsp" %>
-<c:if test="${user.id>0}">
+<c:if test="${user.id<0 }">
     <c:redirect url="/"/>
 </c:if>
 
-<!--=== Header v7 Left ===-->
-<div class="header-v7 header-left-v7">
-    <nav class="navbar navbar-default mCustomScrollbar" role="navigation" data-mcs-theme="minimal-dark">
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-responsive-collapse">
-            <div class="menu-container">
-                <ul id="matrial" class="nav navbar-nav">
-                    <!-- Home -->
-                    <li class="">
-                        <a href="test.html">
-                            الصفحة الرئيسية
-                        </a>
-                    </li>
-                    <!-- End Home -->
-
-                    <!-- About Pages -->
-                    <li class="dropdown">
-                        <a href="#">
-                            المنهج
-                        </a>
-
-                    </li>
-                    <!-- End About Pages -->
-
-                    <!-- Blog -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            مدة الكورس
-                        </a>
-
-                    </li>
-                    <!-- End Blog -->
-
-                    <!-- Contacts -->
-                    <li class="active">
-                        <a href="test2.html">
-                            المحتوى
-                        </a>
-
-                    </li>
-                    <!-- End Contacts -->
-
-                    <!-- Misc Pages -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            تنزيل المحتوى
-                        </a>
-
-                    </li>
-                    <!-- End Misc Pages -->
-                </ul>
-
-            </div>
-        </div>
-        <!-- End Navbar Collapse -->
-    </nav>
-</div>
-<!--=== End Header v7 Left ===-->
 
 <!--///////////////////////////////////////////////////////////////////////////////////////////-->
 <center>
@@ -82,12 +23,9 @@
                     <tr>
                         <th>اسم المحاضر</th>
                         <th class="hidden-sm">اسم المادة</th>
-                        <th>الفصل الدراسى</th>
                     </tr>
                     </thead>
                     <tbody>
-
-
                     <c:forEach items="${subjects}" var="item">
                         <c:if test="${item[6]==1}">
 
@@ -95,7 +33,6 @@
                             <tr>
                                 <td>د/ ${item[0]}</td>
                                 <td class="hidden-sm"><a href="/subject/${item[1]}">${item[4]}</a></td>
-                                <td><span class="label label-success   "> الفصل الدراسي الأول</span></td>
                             </tr>
 
                         </c:if>
@@ -125,7 +62,6 @@
                     <tr>
                         <th>اسم المحاضر</th>
                         <th class="hidden-sm">اسم المادة</th>
-                        <th>الفصل الدراسى</th>
                     </tr>
                     </thead>
                     <c:forEach items="${subjects}" var="item">
@@ -135,8 +71,6 @@
 
                                 <td>د/ ${item[0]}</td>
                                 <td class="hidden-sm"><a href="/subject/${item[1]}">${item[4]}</a></td>
-
-                                <td><span class="label label-success   "> الفصل الدراسي الثانى</span></td>
 
                             </tr>
                         </c:if>

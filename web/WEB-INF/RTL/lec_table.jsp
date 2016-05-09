@@ -3,9 +3,10 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@include file="header.jsp" %>
-<c:if test="${user.id>0}">
+<c:if test="${user.id<0}">
     <c:redirect url="/"/>
 </c:if>
+
 
 <!--=== Header v7 Left ===-->
 <div class="header-v7 header-left-v7">
@@ -17,47 +18,21 @@
                 <ul id="matrial" class="nav navbar-nav">
                     <!-- Home -->
                     <li class="">
-                        <a href="test.html">
+                        <a href="/subject/${Materials.get(0).subject_id}">
                             الصفحة الرئيسية
                         </a>
                     </li>
                     <!-- End Home -->
 
                     <!-- About Pages -->
-                    <li class="dropdown">
-                        <a href="#">
-                            المنهج
-                        </a>
-
-                    </li>
-                    <!-- End About Pages -->
-
-                    <!-- Blog -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            مدة الكورس
-                        </a>
-
-                    </li>
-                    <!-- End Blog -->
-
-                    <!-- Contacts -->
                     <li class="active">
-                        <a href="test2.html">
-                            المحتوى
+                        <a href="#">
+                            المحاضرات
                         </a>
 
                     </li>
-                    <!-- End Contacts -->
 
-                    <!-- Misc Pages -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            تنزيل المحتوى
-                        </a>
 
-                    </li>
-                    <!-- End Misc Pages -->
                 </ul>
 
             </div>
@@ -68,77 +43,40 @@
 <!--=== End Header v7 Left ===-->
 
 <!--///////////////////////////////////////////////////////////////////////////////////////////-->
+
+
 <center>
     <div id="contentTable" class="row">
         <!--Striped Rows-->
         <div class="col-md-12">
             <div class="panel panel-sea margin-bottom-40">
                 <div class="panel-heading">
-                    <h2 class="panel-title" style="font-size: x-large"><i class="fa fa-edit"></i> ﻣﺤﺎﺿﺮاﺕ ﻣﺎﺩﻩ ﻫﻨﺪﺳﺔ
-                        اﻟﺒﺮﻣﺠﻴﺎﺕ
+                    <h2 class="panel-title" style="font-size: x-large"><i class="fa fa-edit"></i> محاضرات ماده هندسة
+                        البرمجيات
                     </h2>
                 </div>
-
-
-
-
 
 
                 <table class="table table-bordered">
                     <thead style="font-size: medium">
                     <tr>
-                        <th>رقم المحاضره</th>
-                        <th class="hidden-sm">اسم المحاضره</th>
-                        <th>الفصل الدراسى</th>
+                        <th>اسم المحاضره</th>
+                        <th class="hidden-sm">تحميل المحاضره</th>
+
                     </tr>
                     </thead>
                     <tbody>
 
 
+                    <c:forEach items="${Materials}" var="item">
+                        <tr>
+                            <td>${item.name}</td>
 
+                            <td class="hidden-sm"><a href="${item.url}" class="btn-u btn-u-aqua"
+                                type="button"><i class="fa fa-download"></i> تحميل</a></td>
 
-                    <tr>
-                        <td>2</td>
-
-                        <td class="hidden-sm">Software Metrics</td>
-
-                        <td><span class="label label-success   ">الفصل الدراسي الثانى </span></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="hidden-sm">Program Metrics</td>
-                        <td><span class="label label-success   "> الفصل الدراسي الثانى</span></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td class="hidden-sm">Software Maintenance</td>
-                        <td><span class="label label-success   ">الفصل الدراسي الثانى </span></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td class="hidden-sm">Line of Code and Function
-                            Metrics
-                        </td>
-                        <td><span class="label label-success   "> الفصل الدراسى الثانى </span></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td class="hidden-sm">Software Cost Estimation</td>
-                        <td><span class="label label-success   "> الفصل الدراسى الثانى </span></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td class="hidden-sm">Object Oriented Development,
-                            Metrics, and Testing
-                        </td>
-                        <td><span class="label label-success   ">الفصل الدراسى الثانى </span></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td class="hidden-sm">Software Testing</td>
-                        <td><span class="label label-success   ">الفصل الدراسى الثانى  </span></td>
-                    </tr>
-
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -147,6 +85,7 @@
 
     </div>
 </center>
+
 
 <!--////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!--=== Footer Version 1 ===-->

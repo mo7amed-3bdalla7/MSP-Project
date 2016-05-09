@@ -17,13 +17,12 @@ public class UserEntity {
     public final static Short STUDENT = 3;
 
     private int id;
-    @Pattern(regexp = "\\w+[a-z0-9]",message = "اسم المستخدم يجب ان يبدأ بحرف ع الاقل وهو مكون من احرف وارقام فقط")
+    @Pattern(regexp = "\\w+[a-zA-Z0-9]",message = "اسم المستخدم يجب ان يبدأ بحرف ع الاقل وهو مكون من احرف وارقام فقط")
     @Size(min = 6,message = "اسم المستخدم يجب ان يحتوى ع الاقل على 6 احرف")
     private String name;
     @Pattern(regexp ="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}" ,message = "من فضلك ادخل بريد الكترونى صحيح")
     private String email;
-    @Pattern(regexp = "\\d{4,10}",message = "الرقم السرى لا يحتوى الا ع ارقام ولا يزيد عن 10 ارقام")
-    @Size(min = 4,message = "ارقم السرى يجب ان يحتوى ع الاقل على 4 احرف")
+    @Pattern(regexp = "[a-zA-Z0-9]{4,}",message = "الرقم السرى لا يقل عن 8 حروف وارقام")
     private String password;
     @Pattern(regexp = "01\\d{9}",message = "من فضلك ادخل رقم هاتف صحيح")
     private String phone;

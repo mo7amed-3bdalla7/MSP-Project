@@ -10,7 +10,17 @@ import javax.persistence.*;
 public class MaterialEntity {
     private int id;
     private String url;
+    private String name;
+    private int subject_id;
 
+    @Basic
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
     @Id
     @Column(name = "id")
     public int getId() {
@@ -25,6 +35,15 @@ public class MaterialEntity {
     @Column(name = "url")
     public String getUrl() {
         return url;
+    }
+    @Basic
+    @Column(name = "subject_id")
+    public int getSubject_id() {
+        return subject_id;
+    }
+
+    public void setSubject_id(int subject_id) {
+        this.subject_id = subject_id;
     }
 
     public void setUrl(String url) {

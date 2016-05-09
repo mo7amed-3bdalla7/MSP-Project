@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +19,6 @@ import java.util.List;
 @Controller
 @SessionAttributes("user")
 public class LoginController {
-
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView init() {
@@ -34,8 +34,14 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView submit(@Valid @ModelAttribute("usermodel") UserEntity userModel) {
+    public ModelAndView submit(@Valid @ModelAttribute("usermodel") UserEntity userModel, BindingResult result) {
         ModelAndView login = null;
+        if (result.hasErrors()) {
+            login = new ModelAndView("RTL/page_login");
+            login.addObject("login_error", "من فضللك تأكد من البيانات :(");
+            return login;
+        }
+
 
         HibernateImpl hibernate = DispatcherBeans.<HibernateImpl>getBean("hibernate");
         Session session = hibernate.getSession();
@@ -53,9 +59,11 @@ public class LoginController {
             login = new ModelAndView("redirect:/");
             login.addObject("user", list.get(0));
 
+
         } else {
 
-            login = new ModelAndView("redirect:/login");
+            login = new ModelAndView("RTL/page_login");
+            login.addObject("login_error", "من فضللك تأكد من البيانات :(");
 
         }
         return login;
