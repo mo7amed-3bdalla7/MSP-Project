@@ -18,7 +18,7 @@
                 <ul id="matrial" class="nav navbar-nav">
                     <!-- Home -->
                     <li class="">
-                        <a href="/subject/${Materials.get(0).subject_id}">
+                        <a href="/subject/${Materials.get(0).subjectId}">
                             الصفحة الرئيسية
                         </a>
                     </li>
@@ -72,8 +72,31 @@
                         <tr>
                             <td>${item.name}</td>
 
-                            <td class="hidden-sm"><a href="${item.url}" class="btn-u btn-u-aqua"
-                                type="button"><i class="fa fa-download"></i> تحميل</a></td>
+                            <td class="hidden-sm"><a download
+                                                     href="
+   <c:choose>
+    <c:when test='${item.url.contains("http")}'>
+       ${item.url}
+    </c:when>
+    <c:otherwise>
+    /uploads/${item.url}
+    </c:otherwise>
+</c:choose>"
+                                                     class="btn-u btn-u-aqua"
+                                                     type="button"><i class="fa fa-cloud-download"></i> تحميل</a>
+
+                                <a
+                                                     href="
+   <c:choose>
+    <c:when test='${item.url.contains("http")}'>
+       ${item.url}
+    </c:when>
+    <c:otherwise>
+    /uploads/${item.url}
+    </c:otherwise>
+</c:choose>"
+                                                     class="btn-u btn-u-aqua"
+                                                     type="button"><i class="fa fa-eye"></i> معاينه</a></td>
 
                         </tr>
                     </c:forEach>

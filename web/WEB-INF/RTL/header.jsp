@@ -9,6 +9,11 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
+
+<%@ page errorPage="page_404.jsp" %>
+
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -17,7 +22,7 @@
 
 <!-- Cloned by RabinsXP.com-->
 <head>
-    <title>اﻟﺮﺋﻴﺴﻴﺔ</title>
+    <title><c:if test="${title == null}">الرئسيه</c:if>${title}</title>
 
     <!-- JS Global Compulsory -->
     <script src="assets/plugins/jquery/jquery.min.js"></script>
@@ -49,17 +54,17 @@
     <link rel="stylesheet" href="assets/css/css-rtl/headers/header-default-rtl.css">
     <link rel="stylesheet" href="assets/css/css-rtl/footers/footer-v1-rtl.css">
 
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets/plugins/animate.css">
-    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/parallax-slider/css/parallax-slider-rtl.css">
-    <link rel="stylesheet" href="assets/plugins/owl-carousel2/assets/owl.carousel.css">
+    <link rel="stylesheet" href="../assets/plugins/animate.css">
+    <link rel="stylesheet" href="../assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/plugins/fancybox/source/jquery.fancybox.css">
+    <link rel="stylesheet" href="../assets/plugins/revolution-slider/rs-plugin/css/settings.css" type="text/css"
+          media="screen">
     <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-rtl.css">
     <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms-rtl.css">
 
     <!-- Style Switcher -->
-    <link rel="stylesheet" href="assets/css/plugins/style-switcher.css">
+    <link rel="stylesheet" href="../assets/css/plugins/style-switcher.css">
 
     <!-- CSS Theme -->
     <link rel="stylesheet" href="assets/css/css-rtl/theme-colors/default.css" id="style_color">
@@ -114,6 +119,14 @@
             top: 50%;
             margin: -266px 0 0 -460px;
             background: url(assets/carregar.gif) center no-repeat;
+        }
+
+        body, li, a, p, span, ul, input, label, h1, h2, h3, h4, h5, h6, div {
+            font-family: 'Droid Arabic Kufi', serf !important;
+        }
+
+        ul.navbar-nav li a.navItem {
+            font-size: 20px !important;
         }
 
     </style>
@@ -183,7 +196,7 @@
     <div class="header">
         <div class="container">
             <!-- Logo -->
-            <a class="logo" href="index.html">
+            <a class="logo" href="/">
                 <img src="assets/img/msp2.png" alt="Logo">
             </a>
             <!-- End Logo -->
@@ -240,7 +253,7 @@
                 <ul class="nav navbar-nav">
                     <!-- Home -->
                     <li>
-                        <a class="navItem" href="index.html" style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                        <a class="navItem" href="/" style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻟﺮﺋﻴﺴﻴﺔ
                         </a>
                     </li>
@@ -261,7 +274,7 @@
 
                     <!-- Blog -->
                     <li class="dropdown">
-                        <a id="nsvItem1" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                        <a class="navItem" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
                            style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻟﺒﺮاﻣﺞ اﻻﻛﺎﺩﻳﻤﻴﺔ
                         </a>
@@ -286,7 +299,7 @@
 
                     <!-- Features -->
                     <li class="dropdown">
-                        <a class="navItem2" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                        <a class="navItem" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
                            style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻟﺘﺨﺼﺼﺎﺕ
                         </a>
@@ -301,7 +314,7 @@
 
                     <!-- Shortcodes -->
                     <li class="dropdown">
-                        <a id="navItem3" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                        <a class="navItem" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
                            style="font-family: PF DIN Text Arabic; font-size: 23px;">
                             اﻷﻧﺸﻄﺔ
                         </a>
@@ -316,28 +329,43 @@
                         </ul>
                     </li>
                     <c:if test="${user.type==3}">
-                    <li class="dropdown">
-                        <a id="navItem3" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                           style="font-family: PF DIN Text Arabic; font-size: 23px;">
-                            الطالب
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/terms"><strong>اﻟمواد </strong></a></li>
+                        <li class="dropdown">
+                            <a id="navItem3" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                               style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                                الطالب
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/terms"><strong>اﻟمواد </strong></a></li>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
 
                     </c:if>
 
 
                     <c:if test="${user.type==2}">
                         <li class="dropdown">
-                            <a id="navItem3" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                            <a id="navItem" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
                                style="font-family: PF DIN Text Arabic; font-size: 23px;">
                                 الدكتور
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/terms"><strong>اﻟمواد </strong></a></li>
+                                <li><a href="/upload"><strong>رفع محاضره </strong></a></li>
+
+                            </ul>
+                        </li>
+
+                    </c:if>
+
+                    <c:if test="${user.type==1}">
+                        <li class="dropdown">
+                            <a class="navItem" href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                               style="font-family: PF DIN Text Arabic; font-size: 23px;">
+                                المسئول
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/signup"><strong>تسجيل مستخدم جديد </strong></a></li>
 
                             </ul>
                         </li>

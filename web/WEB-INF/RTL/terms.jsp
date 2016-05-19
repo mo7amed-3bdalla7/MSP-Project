@@ -26,9 +26,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${subjects}" var="item">
-                        <c:if test="${item[6]==1}">
 
+                    <% boolean flag = false; %>
+
+
+                    <c:forEach items="${subjects}" var="item">
+
+
+                        <c:if test="${item[6]==1}">
+                            <%flag = true; %>
 
                             <tr>
                                 <td>د/ ${item[0]}</td>
@@ -38,6 +44,13 @@
                         </c:if>
 
                     </c:forEach>
+
+                    <c:if test="<%=!flag%>">
+                        <tr>
+                            <td colspan="2" style="text-align: center;">لايوجد محاضرات</td>
+
+                        </tr>
+                    </c:if>
 
 
                     </tbody>
@@ -64,8 +77,13 @@
                         <th class="hidden-sm">اسم المادة</th>
                     </tr>
                     </thead>
+                    <%flag = false;%>
+
+
                     <c:forEach items="${subjects}" var="item">
                         <c:if test="${item[6]==2}">
+
+                            <%flag = true;%>
 
                             <tr>
 
@@ -76,7 +94,12 @@
                         </c:if>
 
                     </c:forEach>
+                    <c:if test="<%=!flag%>">
+                        <tr>
+                            <td colspan="2" style="text-align: center;">لايوجد محاضرات</td>
 
+                        </tr>
+                    </c:if>
                     </tbody>
                 </table>
             </div>

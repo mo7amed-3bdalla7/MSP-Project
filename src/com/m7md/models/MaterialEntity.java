@@ -11,7 +11,7 @@ public class MaterialEntity {
     private int id;
     private String url;
     private String name;
-    private int subject_id;
+    private int subjectId;
 
     @Basic
     @Column(name = "name")
@@ -38,12 +38,12 @@ public class MaterialEntity {
     }
     @Basic
     @Column(name = "subject_id")
-    public int getSubject_id() {
-        return subject_id;
+    public int getSubjectId() {
+        return subjectId;
     }
 
-    public void setSubject_id(int subject_id) {
-        this.subject_id = subject_id;
+    public void setSubjectId(int subject_id) {
+        this.subjectId = subject_id;
     }
 
     public void setUrl(String url) {

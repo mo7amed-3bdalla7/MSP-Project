@@ -3,39 +3,171 @@
 <%@include file="WEB-INF/RTL/header.jsp" %>
 
 <!--=== Slider ===-->
-<div class="slider-inner">
-    <div id="da-slider" class="da-slider">
-        <div class="da-slide">
-            <h2><i>ﺑﺪاﻳﺔ اﻟﺘﺮﻡ اﻟﺜﺎﻧﻰ</i> <br/> <i>ﻣﻦ اﻟﻌﺎﻡ اﻟﺪﺭاﺳﻰ اﻟﺠﺪﻳﺪ</i> <br/> <i>ﻓﻰ ﻛﻠﻴﺔ اﻟﺤﺎﺳﺒﺎﺕ</i></h2>
-            <p><i>ﺗﺮﻡ ﺛﺎﻧﻰ ﺳﻌﻴﺪ</i> <br/> <i>ﺑﺪاﻳﺔ ﻓﻌﺎﻟﺔ ﻣﻦ اﻟﻄﻠﺒﺔ</i> <br/> <i> ﺑﺎﻟﻨﺠﺎﺡ ﻭ اﻟﺘﻮﻓﻴﻖ</i></p>
-            <!--<div class="da-img"><img class="img-responsive"  width="530" height="300" src="../assets/plugins/parallax-slider/img/fci.jpg" alt=""></div>-->
-            <div class="da-img"><img style="height: 280px" class="img-responsive" width="530" height="270"
-                                     src="assets/img/main/news1.jpg" alt=""></div>
-        </div>
-        <div class="da-slide">
-            <h2><i>ﻓﻴﺪﻳﻮ ﻗﺼﻴﺮ ﻋﻦ اﻟﻜﻠﻴﺔ</i> <br/> <i>ﻧﺸﺄﺗﻬﺎ</i> <br/> <i>ﻭ ﺗﻔﺎﺻﻴﻞ ﻋﻨﻬﺎ</i></h2>
-            <div class="da-img">
-                <!--<iframe width="530" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>-->
-                <!--<iframe src="../assets/video/code_jame.mp4" width="530" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>-->
-                <video controls="" width="530" height="300" poster="assets/video/codeJame.png">
-                    <source src="assets/video/code_jame.mp4">
-                </video>
-            </div>
-        </div>
-        <div class="da-slide">
-            <h2><i> ﺗﺴﺘﻠﻢ اﻟﻜﻠﻴﺔ اﻟﻤﺒﻨﻰ اﻟﺠﺪﻳﺪ </i> <br/> <i>ﻣﻊ ﺑﺪاﻳﺔ اﻟﻌﺎﻡ </i> <br/> <i>اﻟﺪﺭاﺳﻰ اﻟﻘﺎﺩﻡ</i></h2>
-            <p><i>ﻣﺒﻨﻰ ﻋﻠﻰ اﻋﻠﻰ </i> <br/> <i>اﻟﻤﻮاﺻﻔﺎﺕ اﻟﻌﺎﻟﻤﻴﺔ</i> <br/> <i>ﺻﺮﺡ ﻋﻠﻤﻰ ﺟﺪﻳﺪ ﻓﻰ اﻟﺠﺎﻣﻌﺔ </i></p>
-            <div class="da-img"><img width="530" height="270" src="assets/img/main/slider1.jpg" alt="image01"/></div>
-        </div>
-        <div class="da-arrows">
-            <span class="da-arrows-prev"></span>
-            <span class="da-arrows-next"></span>
-        </div>
+<div class="tp-banner-container">
+    <div class="tp-banner">
+        <ul>
+            <!-- SLIDE -->
+            <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
+                data-title="Title 1">
+                <!-- MAIN IMAGE -->
+                <img src="../assets/img/sliders/1.jpg" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top"
+                     data-bgrepeat="no-repeat">
+
+                <div class="tp-caption revolution-ch1 sft start"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="100"
+                     data-speed="1500"
+                     data-start="500"
+                     data-easing="Back.easeInOut"
+                     data-endeasing="Power1.easeIn"
+                     data-endspeed="300">
+                    ﺑﺪاﻳﺔ اﻟﺘﺮﻡ اﻟﺜﺎﻧﻰ
+                </div>
+
+                <!-- LAYER -->
+                <div class="tp-caption revolution-ch2 sft"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="190"
+                     data-speed="1400"
+                     data-start="2000"
+                     data-easing="Power4.easeOut"
+                     data-endspeed="300"
+                     data-endeasing="Power1.easeIn"
+                     data-captionhidden="off"
+                     style="z-index: 6">
+                    تمت الموافقة على تسجيل عدد (5) بحث خاص <%--بالسيدة الدكتورة / نورا عبد المعز السباعى سمرى <br/>
+                    المدرس بقسم تكنولوجيا المعلومات بالكلية و ذلك بعد موافقة مجلس القسم--%>
+                </div>
+
+                <!-- LAYER -->
+                <div class="tp-caption sft"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="310"
+                     data-speed="1600"
+                     data-start="2800"
+                     data-easing="Power4.easeOut"
+                     data-endspeed="300"
+                     data-endeasing="Power1.easeIn"
+                     data-captionhidden="off"
+                     style="z-index: 6">
+                    <a href="/404" class="btn-u btn-brd btn-brd-hover btn-u-light">قراءة المزيد</a>
+                </div>
+            </li>
+            <!-- END SLIDE -->
+
+            <!-- SLIDE -->
+            <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
+                data-title="Title 2">
+                <!-- MAIN IMAGE -->
+                <img src="../assets/img/sliders/2.jpg" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top"
+                     data-bgrepeat="no-repeat">
+
+                <div class="tp-caption revolution-ch1 sft start"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="100"
+                     data-speed="1500"
+                     data-start="500"
+                     data-easing="Back.easeInOut"
+                     data-endeasing="Power1.easeIn"
+                     data-endspeed="300">
+                    إعلان هام لاعضاء هيئة التدرييس
+                </div>
+
+                <!-- LAYER -->
+                <div class="tp-caption revolution-ch2 sft "
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="190"
+                     data-speed="1400"
+                     data-start="2000"
+                     data-easing="Power4.easeOut"
+                     data-endspeed="300"
+                     data-endeasing="Power1.easeIn"
+                     data-captionhidden="off"
+                     style="z-index: 6;
+                     text-align: justify;
+                     ">
+
+                    ورد الينا كتاب الادارة العامة للدراسات العليا و البحوث بالجامعة
+                </div>
+
+                <!-- LAYER -->
+                <div class="tp-caption sft"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="310"
+                     data-speed="1600"
+                     data-start="2800"
+                     data-easing="Power4.easeOut"
+                     data-endspeed="300"
+                     data-endeasing="Power1.easeIn"
+                     data-captionhidden="off"
+                     style="z-index: 6">
+                    <a href="/404" class="btn-u btn-brd btn-brd-hover btn-u-light">قراءة المزيد</a>
+                </div>
+            </li>
+            <!-- END SLIDE -->
+
+            <!-- SLIDE -->
+            <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
+                data-title="Title 3">
+                <!-- MAIN IMAGE -->
+                <img src="../assets/img/sliders/3.jpg" alt="darkblurbg" data-bgfit="cover" data-bgposition="left top"
+                     data-bgrepeat="no-repeat">
+
+                <div class="tp-caption revolution-ch1 sft start"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="100"
+                     data-speed="1500"
+                     data-start="500"
+                     data-easing="Back.easeInOut"
+                     data-endeasing="Power1.easeIn"
+                     data-endspeed="300">
+                    الموافقة على منح درجة الماجستير للطالبة / ايمان احمد ابو العنين
+                </div>
+
+                <!-- LAYER -->
+                <div class="tp-caption revolution-ch2 sft"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="190"
+                     data-speed="1400"
+                     data-start="2000"
+                     data-easing="Power4.easeOut"
+                     data-endspeed="300"
+                     data-endeasing="Power1.easeIn"
+                     data-captionhidden="off"
+                     style="z-index: 6">
+                    تمت الموافقة على منح درجة الماجستير للطالبة / ايمان<%-- احمد ابو العنين محمد درجة الماجستير <br/>
+                    فى الحاسبات و المعلومات بناءا على التقارير الفردية و التقرير الجماعى للمناقشة هذه الرسالة بعنوان :--%>
+                </div>
+
+                <!-- LAYER -->
+                <div class="tp-caption sft"
+                     data-x="center"
+                     data-hoffset="0"
+                     data-y="310"
+                     data-speed="1600"
+                     data-start="2800"
+                     data-easing="Power4.easeOut"
+                     data-endspeed="300"
+                     data-endeasing="Power1.easeIn"
+                     data-captionhidden="off"
+                     style="z-index: 6">
+                    <a href="/404" class="btn-u btn-brd btn-brd-hover btn-u-light"> قراءة المزيد</a>
+                </div>
+            </li>
+            <!-- END SLIDE -->
+        </ul>
+        <div class="tp-bannertimer tp-bottom"></div>
     </div>
 </div>
-<!--/slider-->
 <!--=== End Slider ===-->
-
 <!--=== Content Part ===-->
 <div class="container content-sm">
     <!-- Service Blocks -->

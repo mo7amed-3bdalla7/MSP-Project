@@ -9,6 +9,9 @@ import javax.persistence.*;
 @Table(name = "subject", schema = "msp")
 public class SubjectEntity {
     private int id;
+
+
+    private int doctorId;
     private String code;
     private String name;
     private String year;
@@ -18,6 +21,16 @@ public class SubjectEntity {
     @Column(name = "id")
     public int getId() {
         return id;
+    }
+
+    @Basic
+    @Column(name = "doctor_id")
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
     public void setId(int id) {

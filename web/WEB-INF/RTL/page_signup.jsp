@@ -36,39 +36,58 @@ ${user.type}
                 <header>
                     التسجيل باستخدام حساب جديد
                 </header>
+                <c:if test="${errorUnq !=null}">
 
+                    <span class="red">${errorUnq}</span>
+
+                </c:if>
 
                 <fieldset>
                         <%--<form:errors path="student.*" cssClass=""/>--%>
 
 
                     <label class="input">
-                        <i class="icon-append fa fa-lock"></i>
+                        <i class="icon-append fa fa-user"></i>
                         <input type="text" name="name" placeholder="إسم المستخدم" class="form-control">
-                        <form:errors path="*" cssClass="red"/>
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                        <c:if test='${error == "userReg"}'>
+                            <form:errors path="name" cssClass="red"/>
+                        </c:if>
+
+                        <b class="tooltip tooltip-bottom-right">اسم المستخدم يجب ان يحتوى ع الاقل على 6 احرف ويبدا
+                            بحرف </b>
                     </label>
 
 
                     <label class="input">
-                        <i class="icon-append fa fa-lock"></i>
+                        <i class="icon-append fa fa-mail-forward"></i>
                         <input type="text" name="email" placeholder="اﻹيميل" class="form-control">
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                        <c:if test='${error == "userReg"}'>
+                            <form:errors path="email" cssClass="red"/>
+                        </c:if>
+                        <b class="tooltip tooltip-bottom-right">ن فضلك ادخل بريد الكترونى صحيح</b>
                     </label>
+
                     <label class="input">
                         <i class="icon-append fa fa-lock"></i>
                         <input type="password" name="password" placeholder="كلمة المرور" class="form-control">
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                        <c:if test='${error == "userReg"}'>
+                            <form:errors path="password" cssClass="red"/>
+                        </c:if>
+                        <b class="tooltip tooltip-bottom-right">اسم المستخدم يجب ان يحتوى ع الاقل على 6 احرف</b>
                     </label>
-                    <label class="input">
-                        <i class="icon-append fa fa-lock"></i>
-                        <input type="password" name="password2" placeholder="تأكيد كلمة المرور" class="form-control">
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-                    </label>
+                        <%-- <label class="input">
+                             <i class="icon-append fa fa-lock"></i>
+                             <input type="password" name="password2" placeholder="تأكيد كلمة المرور" class="form-control">
+                             <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                         </label>--%>
 
                     <label class="input">
-                        <i class="icon-append fa fa-lock"></i>
+                        <i class="icon-append fa fa-phone"></i>
                         <input type="phone" name="phone" placeholder="رقم الهاتف" class="form-control">
+                        <c:if test='${error == "userReg"}'>
+                            <form:errors path="phone" cssClass="red"/>
+                        </c:if>
+                        <b class="tooltip tooltip-bottom-right">ادخل رقم هاتف مكون من 11 رقم ويبدأ 01</b>
                     </label>
 
 
@@ -79,8 +98,12 @@ ${user.type}
                             <option value="2">دكتور</option>
                             <option value="3">طالب</option>
                         </select>
+                        <c:if test='${error == "userReg"}'>
+                            <form:errors path="type" cssClass="red"/>
+                        </c:if>
                         <i></i>
                     </label>
+
                     <script>
                         $("select[name='type']")
                                 .change(function () {
@@ -107,8 +130,27 @@ ${user.type}
                                     }
                                 });
 
-                    </script>
+                        var str = "<c:if test="${error==null}">ffff</c:if>${error}";
 
+
+                        jQuery(window).load(function () {
+                            if (str == "doctor") {
+                                $(".doctor").css("display", "block");
+                                $(".student").css("display", "none");
+                                $(".student_doctor").css("display", "block");
+
+                                console.log(str);
+                            } else if (str == "student") {
+                                $(".student").css("display", "block");
+                                $(".doctor").css("display", "none");
+                                $(".student_doctor").css("display", "block");
+
+                            }
+
+                        });
+
+
+                    </script>
 
                     <label class="select student_doctor" style="display: none">
                         <select name="departmentId" style="font-family: inherit; color:#bbb;">
@@ -124,32 +166,66 @@ ${user.type}
 
                         </select>
                         <i></i>
+                        <c:if test='${error == "doctor"}'>
+                            <form:errors path="departmentId" cssClass="red"/>
+                        </c:if>
                     </label>
 
 
                     <label class="input doctor" style="display: none">
-                        <i class="icon-append fa fa-lock"></i>
+                        <i class="icon-append fa fa-desktop"></i>
                     <textarea name="details" placeholder="معلومات عن الدكتور"
                               style="max-width: 298px" class="form-control"></textarea>
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                        <b class="tooltip tooltip-bottom-right">مطلوب</b>
+                        <c:if test='${error == "doctor"}'>
+
+                            <form:errors path="details" cssClass="red"/>
+                        </c:if>
+
                     </label>
 
 
                     <label class="input student" style="display: none">
-                        <i class="icon-append fa fa-lock"></i>
+                        <i class="icon-append fa fa-user-secret"></i>
                         <input type="text" name="section" placeholder="رقم السكشن" class="form-control">
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-                    </label>
-                    <label class="input student" style="display: none">
-                        <i class="icon-append fa fa-lock"></i>
-                        <input type="text" name="year" placeholder="السنه الدراسية" class="form-control">
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                        <b class="tooltip tooltip-bottom-right">مطلوب</b>
+                        <c:if test='${error == "student"}'>
+                            <form:errors path="section" cssClass="red"/>
+                        </c:if>
+
                     </label>
 
+
+                    <label class="select student" style="display: none">
+                        <select name="year" style="font-family: inherit;color:#bbb;">
+                            <option value="0" selected>السنه الدراسية</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <c:if test='${error == "student"}'>
+
+                            <form:errors path="year" cssClass="red"/>
+                        </c:if>
+                        <i></i>
+                    </label>
+
+
+                        <%--  <label class="input student" style="display: none">
+                              <i class="icon-append fa fa-lock"></i>
+                              <input type="text" name="year" placeholder="السنه الدراسية" class="form-control">
+                              <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                          </label>--%>
+
                     <label class="input student" style="display: none">
-                        <i class="icon-append fa fa-lock"></i>
+                        <i class="icon-append fa fa-sort-numeric-asc"></i>
                         <input type="text" name="uid" placeholder="كود الطالب" class="form-control">
-                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                        <b class="tooltip tooltip-bottom-right">ادخل كود مكون من 15 رقم</b>
+                        <c:if test='${error == "student"}'>
+                            <form:errors path="uid" cssClass="red"/>
+
+                        </c:if>
                     </label>
 
 

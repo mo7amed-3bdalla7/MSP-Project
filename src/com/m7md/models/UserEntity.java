@@ -4,7 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.xml.bind.DatatypeConverter;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by m7md on 4/26/16.
@@ -17,18 +20,18 @@ public class UserEntity {
     public final static Short STUDENT = 3;
 
     private int id;
-    @Pattern(regexp = "\\w+[a-zA-Z0-9]",message = "اسم المستخدم يجب ان يبدأ بحرف ع الاقل وهو مكون من احرف وارقام فقط")
-    @Size(min = 6,message = "اسم المستخدم يجب ان يحتوى ع الاقل على 6 احرف")
+    @Pattern(regexp = "[a-zA-Z0-9]{6,}", message = "اسم المستخدم يجب ان يبدأ بحرف ع الاقل وهو مكون من 6 احرف وارقام فقط")
+//    @Size(min = 6, message = "اسم المستخدم يجب ان يحتوى ع الاقل على 6 احرف")
     private String name;
-    @Pattern(regexp ="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}" ,message = "من فضلك ادخل بريد الكترونى صحيح")
+    @Pattern(regexp = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}", message = "من فضلك ادخل بريد الكترونى صحيح")
     private String email;
-    @Pattern(regexp = "[a-zA-Z0-9]{4,}",message = "الرقم السرى لا يقل عن 8 حروف وارقام")
+    @Pattern(regexp = "[a-zA-Z0-9]{4,}", message = "الرقم السرى لا يقل عن 8 حروف وارقام")
     private String password;
-    @Pattern(regexp = "01\\d{9}",message = "من فضلك ادخل رقم هاتف صحيح")
+    @Pattern(regexp = "01\\d{9}", message = "من فضلك ادخل رقم هاتف صحيح")
     private String phone;
     private byte active;
-    @Min(value = 1,message = "ان لم تحدد نوع المستخدم لم يتم تسجيلك ")
-    @Max(value = 3,message = "ان لم تحدد نوع المستخدم لم يتم تسجيلك ")
+    @Min(value = 1, message = "ان لم تحدد نوع المستخدم لم يتم تسجيلك ")
+    @Max(value = 3, message = "ان لم تحدد نوع المستخدم لم يتم تسجيلك ")
     private Short type;
 
     @Id
@@ -116,6 +119,25 @@ public class UserEntity {
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (type != that.type) return false;
         return true;
+    }
+
+
+    public static String hashPassword(String password) {
+        String sault = "m7md";
+        String hash = null;
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            hash = password + sault;
+            md.update(hash.getBytes("UTF-8"));
+            byte[] digest = md.digest();
+            //System.out.println(hash);
+            hash = DatatypeConverter.printHexBinary(digest);
+
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+
+        }
+        return hash;
     }
 
 

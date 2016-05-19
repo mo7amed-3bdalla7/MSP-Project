@@ -23,6 +23,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView init() {
         ModelAndView login = new ModelAndView("RTL/page_login");
+        login.addObject("title", "تسجيل الدخول");
         return login;
     }
 
@@ -36,32 +37,39 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView submit(@Valid @ModelAttribute("usermodel") UserEntity userModel, BindingResult result) {
         ModelAndView login = null;
-        if (result.hasErrors()) {
-            login = new ModelAndView("RTL/page_login");
-            login.addObject("login_error", "من فضللك تأكد من البيانات :(");
-            return login;
-        }
+        try {
+
+            if (result.hasErrors()) {
+                login = new ModelAndView("RTL/page_login");
+                login.addObject("login_error", "من فضللك تأكد من البيانات :(");
+                return login;
+            }
 
 
-        HibernateImpl hibernate = DispatcherBeans.<HibernateImpl>getBean("hibernate");
-        Session session = hibernate.getSession();
-        Transaction transaction = session.beginTransaction();
+            HibernateImpl hibernate = DispatcherBeans.<HibernateImpl>getBean("hibernate");
+            Session session = hibernate.getSession();
+            Transaction transaction = session.beginTransaction();
 
 
-        Query query = session.createQuery("from UserEntity user where user.email =:email and user.password=:password");
-        query.setParameter("email", userModel.getEmail());
-        query.setParameter("password", userModel.getPassword());
-        List<UserEntity> list = query.list();
+            Query query = session.createQuery("from UserEntity user where user.email =:email and user.password=:password");
+            query.setParameter("email", userModel.getEmail());
+            query.setParameter("password", UserEntity.hashPassword(userModel.getPassword()));
+            List<UserEntity> list = query.list();
 
-        transaction.commit();
+            transaction.commit();
 
-        if (list.size() > 0) {
-            login = new ModelAndView("redirect:/");
-            login.addObject("user", list.get(0));
+            if (list.size() > 0) {
+                login = new ModelAndView("redirect:/");
+                login.addObject("user", list.get(0));
 
 
-        } else {
+            } else {
 
+                login = new ModelAndView("RTL/page_login");
+                login.addObject("login_error", "من فضللك تأكد من البيانات :(");
+
+            }
+        } catch (Exception e) {
             login = new ModelAndView("RTL/page_login");
             login.addObject("login_error", "من فضللك تأكد من البيانات :(");
 

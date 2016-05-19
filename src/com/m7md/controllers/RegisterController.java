@@ -41,6 +41,8 @@ public class RegisterController {
 
         ModelAndView signup = new ModelAndView("RTL/page_signup");
         signup.addObject("departments", fetchedRow);
+        signup.addObject("title", "تسجيل مستخدم");
+
         return signup;
     }
 
@@ -54,50 +56,55 @@ public class RegisterController {
             @Valid @ModelAttribute("student") StudentEntity student,
             BindingResult studentResult
     ) {
-
-
         ModelAndView login = getDepartments();
+        try {
 
-        if (userResult.hasErrors()) {
-            login.addObject("error", "userReg");
-            return login;
-        } else {
+            if (userResult.hasErrors()) {
+                login.addObject("error", "userReg");
+                return login;
+            } else {
 
-            BigInteger insert = null;
+                BigInteger insert = null;
+                userReg.setPassword(UserEntity.hashPassword(userReg.getPassword()));
 
-            if (userReg.getType() == UserEntity.ADMIN) {
-                insert = HibernateImpl.<UserEntity>insert(userReg);
-            } else if (userReg.getType() == UserEntity.DOCTOR) {
-                if (doctorResult.hasErrors()) {
-                    login.addObject("error", "doctor");
-                } else {
+                if (userReg.getType() == UserEntity.ADMIN) {
+
+
                     insert = HibernateImpl.<UserEntity>insert(userReg);
-                    doctor.setId(insert.intValue());
-                    HibernateImpl.insert(doctor);
+                } else if (userReg.getType() == UserEntity.DOCTOR) {
+                    if (doctorResult.hasErrors()) {
+                        login.addObject("error", "doctor");
+                    } else {
+
+                        insert = HibernateImpl.<UserEntity>insert(userReg);
+                        doctor.setId(insert.intValue());
+                        HibernateImpl.insert(doctor);
+                    }
+
+
+                } else if (userReg.getType() == UserEntity.STUDENT) {
+                    if (studentResult.hasErrors()) {
+                        login.addObject("error", "student");
+                    } else {
+                        insert = HibernateImpl.<UserEntity>insert(userReg);
+                        student.setId(insert.intValue());
+                        HibernateImpl.insert(student);
+                    }
+
                 }
 
 
-            } else if (userReg.getType() == UserEntity.STUDENT) {
-                if (studentResult.hasErrors()) {
-                    login.addObject("error", "student");
-                } else {
-                    insert = HibernateImpl.<UserEntity>insert(userReg);
-                    student.setId(insert.intValue());
-                    HibernateImpl.insert(student);
+                if (insert != null && insert.intValue() > 0) {
+
+                    login = new ModelAndView("redirect:/");
                 }
 
+
             }
 
-
-            if (insert != null && insert.intValue() > 0) {
-
-                login = new ModelAndView("redirect:/");
-            }
-
-
+        } catch (Exception e) {
+            login.addObject("errorUnq", "Check unique fields");
         }
-
-
         return login;
     }
 }

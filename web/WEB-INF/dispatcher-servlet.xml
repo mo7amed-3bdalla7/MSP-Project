@@ -28,22 +28,44 @@
 
     </bean>
 
-    <bean id="hibernate" class="com.m7md.models.HibernateImpl">
+    <bean id="hibernate" class="com.m7md.models.HibernateImpl"></bean>
+
+    <bean id="fileValidator" class="com.m7md.models.FileValidator"/>
+
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+
+        <property name="basename" value="validation"/>
+
     </bean>
+
 
     <!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
          <property name="basename" value="msg"/>
      </bean>-->
+    <context:annotation-config/>
+
+    <mvc:resources mapping="/uploads/**" location="/uploads/"
+                   cache-period="31556926"/>
+
 
     <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"
                    cache-period="31556926"/>
-    <context:annotation-config/>
+
+
     <mvc:resources mapping="/subject/assets/**" location="/WEB-INF/assets/"
                    cache-period="31556926"/>
-    <context:annotation-config/>
- <mvc:resources mapping="/lectures/assets/**" location="/WEB-INF/assets/"
+
+    <mvc:resources mapping="/lectures/assets/**" location="/WEB-INF/assets/"
                    cache-period="31556926"/>
-    <context:annotation-config/>
+  <mvc:resources mapping="/RTL/**" location="/WEB-INF/RTL/"
+                   cache-period="31556926"/>
+
 
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

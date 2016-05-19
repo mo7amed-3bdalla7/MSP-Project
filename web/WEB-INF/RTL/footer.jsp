@@ -16,7 +16,8 @@
                     ﺟﻤﻴﻊ اﻟﺤﻘﻮﻕ ﻣﺤﻔﻮﻇﺔ &copy; 2016
 
                     <!--<a href="#">ﺟﻤﻴﻊ اﻟﺤﻘﻮﻕ ﻣﺤﻔﻮﻇﺔ &copy; </a>-->
-                    &nbsp;  | <a href="#">&nbsp;ﺳﻴﺎﺳﺎﺕ اﻻﺳﺘﺨﺪاﻡ&nbsp;</a> &nbsp;| &nbsp; ﺑﻮاﺳﻄﺔ&nbsp;&nbsp; <a href="RTL/about_team.html">ﻓﺮﻳﻖ اﻟﻌﻤﻞ</a>
+                    &nbsp; | <a href="#">&nbsp;ﺳﻴﺎﺳﺎﺕ اﻻﺳﺘﺨﺪاﻡ&nbsp;</a> &nbsp;| &nbsp; ﺑﻮاﺳﻄﺔ&nbsp;&nbsp; <a
+                        href="RTL/about_team.html">ﻓﺮﻳﻖ اﻟﻌﻤﻞ</a>
 
                 </p>
             </div>
@@ -25,29 +26,34 @@
             <div class="col-md-6">
                 <ul class="footer-socials list-inline">
                     <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="Facebook">
                             <i class="fa fa-facebook"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="Google Plus">
                             <i class="fa fa-google-plus"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="Linkedin">
                             <i class="fa fa-linkedin"></i>
                         </a>
                     </li>
 
                     <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="Twitter">
                             <i class="fa fa-twitter"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="youtube">
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="youtube">
                             <i class="fa fa-youtube"></i>
                         </a>
                     </li>
@@ -56,30 +62,34 @@
             <!-- End Social Links -->
         </div>
     </div>
-</div><!--/copyright-->
+</div>
+<!--/copyright-->
 </div>
 <!--=== End Footer Version 1 ===-->
 </div><!--/wrapper-->
-
+<!-- JS Global Compulsory -->
+<script src="../assets/plugins/jquery/jquery.min.js"></script>
+<script src="../assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- JS Implementing Plugins -->
-<script src="assets/plugins/back-to-top.js"></script>
-<script src="assets/plugins/smoothScroll.js"></script>
-<script src="assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script src="assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<script src="assets/plugins/owl-carousel2/owl.carousel.min.js"></script>
+<script src="../assets/plugins/back-to-top.js"></script>
+<script src="../assets/plugins/smoothScroll.js"></script>
+<script src="../assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="../assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="../assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <!-- JS Customization -->
-<script src="assets/js/custom.js"></script>
+<script src="../assets/js/custom.js"></script>
 <!-- JS Page Level -->
-<script src="assets/js/app.js"></script>
-<script src="assets/js/plugins/owl-carousel-rtl.js"></script>
-<script src="assets/js/plugins/style-switcher-rtl.js"></script>
-<script src="assets/js/plugins/parallax-slider.js"></script>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/plugins/fancy-box.js"></script>
+<script src="../assets/js/plugins/style-switcher-rtl.js"></script>
+<script src="../assets/js/plugins/revolution-slider.js"></script>
 <script>
     jQuery(document).ready(function () {
         App.init();
-        OwlCarousel.initOwlCarousel();
+        FancyBox.initFancybox();
         StyleSwitcher.initStyleSwitcher();
-        ParallaxSlider.initParallaxSlider();
+        RevolutionSlider.initRSfullWidth();
     });
 </script>
 <!--[if lt IE 9]>

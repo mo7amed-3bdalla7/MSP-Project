@@ -30,6 +30,7 @@ public class HelloController {
 
 
         ModelAndView modelAndView = new ModelAndView("../index");
+        modelAndView.addObject("title", "اﻟﺮﺋﻴﺴﻴﺔ");
         //Session session = HibernateImpl.getSession();
 
 

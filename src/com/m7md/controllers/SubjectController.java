@@ -44,7 +44,7 @@ public class SubjectController {
 
     @RequestMapping(value = "/terms", method = RequestMethod.GET)
     public ModelAndView terms(@ModelAttribute("user") UserEntity user) {
-        System.out.println("gggggggggggggggggggggg" + user.getType());
+
         ModelAndView terms = null;
         try {
             StudentEntity s = getStudentIfExist(user);
@@ -53,6 +53,8 @@ public class SubjectController {
         } catch (NullPointerException f) {
             terms = new ModelAndView("redirect:/");
         }
+        terms.addObject("title", "المواد");
+
         return terms;
     }
 
@@ -63,18 +65,53 @@ public class SubjectController {
         try {
             int sub = Integer.parseInt(subId);
             lectures = new ModelAndView("RTL/lec_table");
-            lectures.addObject("Materials", getMateiral(sub));
+            List<MaterialEntity> mateiral = getMateiral(sub);
+            if (mateiral.size() > 0) {
+                lectures.addObject("Materials", mateiral);
+            } else {
+                lectures = new ModelAndView("redirect:/");
+            }
         } catch (Exception x) {
             lectures = new ModelAndView("redirect:/");
         }
         return lectures;
     }
 
+
+    /* @RequestMapping(value = "/lectures/upload", method = RequestMethod.GET)
+     public ModelAndView uploadLcetures() {
+         ModelAndView lectures = null;
+         try {
+             lectures = new ModelAndView("RTL/add_material");
+         } catch (Exception x) {
+             lectures = new ModelAndView("redirect:/");
+         }
+         return lectures;
+     }
+
+     @RequestMapping(value = "/lectures/upload", method = RequestMethod.POST)
+     public ModelAndView uploadLceturesPost(@ModelAttribute("material") MaterialEntity material,
+                                            @Validated File file,
+                                            BindingResult result) {
+         ModelAndView lectures = null;
+         try {
+             lectures = new ModelAndView("RTL/add_material");
+         } catch (Exception x) {
+             lectures = new ModelAndView("redirect:/");
+         }
+         return lectures;
+     }
+ */
     private List getSubjects(StudentEntity studentEntity) {
         Session session = HibernateImpl.getSession();
         Transaction transaction = session.beginTransaction();
-        SQLQuery sqlQuery = session.createSQLQuery("select usr.name as  nme,sub.id,sub.doctor_id,sub.code,sub.name,sub.year,sub.term  from subject sub right outer join department_subject dep on sub.id = dep.subject_id join user usr  on usr.id = sub.doctor_id where dep.department_id=:stud_dept");
+        SQLQuery sqlQuery = session.createSQLQuery(
+                "select usr.name as  nme,sub.id,sub.doctor_id,sub.code,sub.name,sub.year,sub.term  " +
+                        "from subject sub right outer join department_subject dep on sub.id = dep.subject_id join" +
+                        " user usr  on usr.id = sub.doctor_id where dep.department_id=:stud_dept " +
+                        "AND sub.year =:stud_year");
         sqlQuery.setParameter("stud_dept", studentEntity.getDepartmentId());
+        sqlQuery.setParameter("stud_year", studentEntity.getYear());
         List<Object[]> list = sqlQuery.list();
         transaction.commit();
         return list;
@@ -95,7 +132,7 @@ public class SubjectController {
     private List<MaterialEntity> getMateiral(int subjectId) {
         Session session = HibernateImpl.getSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from MaterialEntity m where m.subject_id=:sub");
+        Query query = session.createQuery("from MaterialEntity m where m.subjectId=:sub");
         query.setParameter("sub", subjectId);
         List<MaterialEntity> materialEntities = query.list();
         return materialEntities;

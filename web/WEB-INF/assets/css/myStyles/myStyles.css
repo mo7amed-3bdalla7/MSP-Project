@@ -1,3 +1,4 @@
+/*
 
 #news p {
     font-size: 15.5px;
@@ -59,13 +60,13 @@
 #sport p {
     font-size: 16.5px;
     word-spacing: 1.5px;
-    /*font-weight: bold;*/
+    !*font-weight: bold;*!
 }
 
 #sport li {
     font-size: 15.5px;
     word-spacing: 1px;
-    /*font-weight: bold;*/
+    !*font-weight: bold;*!
 }
 
 #cultural p {
@@ -149,3 +150,4 @@
 
 
 
+*/
